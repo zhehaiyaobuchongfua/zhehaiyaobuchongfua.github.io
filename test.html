@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you love me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #ddd;
+        }
+        #likeBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #dislikeBtn {
+            background-color: #f44336;
+            color: white;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>你喜欢我嘛</h1>
+    <button id="likeBtn">喜欢！</button>
+    <button id="dislikeBtn">不喜欢！</button>
+    <p id="message">我也喜欢你</p>
+
+    <script>
+        const likeBtn = document.getElementById('likeBtn');
+        const dislikeBtn = document.getElementById('dislikeBtn');
+        const message = document.getElementById('message');
+
+        likeBtn.addEventListener('click', function() {
+            message.style.display = 'block';
+            likeBtn.style.transform = 'scale(1.5)';
+            dislikeBtn.style.transform = 'scale(0.5)';
+            setTimeout(() => {
+                likeBtn.parentElement.innerHTML = message.innerHTML;
+            }, 300);
+        });
+
+        dislikeBtn.addEventListener('click', function() {
+            this.style.transform = 'scale(0.5)';
+            likeBtn.style.transform = 'scale(1.5)';
+        });
+    </script>
+</body>
+</html>
