@@ -1,100 +1,113 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Do you love me</title>
+    <title>Hello Kitty Voting</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-image: url('background.jpg'); /* 默认背景图片 */
+            background-size: cover;
+            background-position: center;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('background.gif'); /* 背景图片 */
-
-            background-position: center; /* 背景图片居中显示 */
-
-            background-attachment: fixed; /* 背景图片固定，不随页面滚动 */
         }
 
-        h1 {
-            margin-bottom: 200px;
-            font-size: 70px;
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: -490px;
         }
 
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 45px;
+        .title {
+            font-size: 24px;
+            color: #FF1493;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             border: none;
-            border-radius: 20px;
+            margin: 0 10px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-           
         }
 
-            button:hover {
-                background-color: #ddd;
-            }
-
-        #likeBtn {
+        .heart-green {
             background-color: #4CAF50;
-            color: white;
         }
 
-        #dislikeBtn {
-            background-color: #f44336;
-            color: white;
-            position: absolute;
+        .heart-red {
+            background-color: #F44336;
         }
 
         #message {
             margin-top: 20px;
             font-size: 18px;
             display: none;
+            opacity: 1;
+            animation: toggleVisibility 1.45s infinite;
+            margin-top: -490px;
+            font-weight:600;
+        }
+
+        @keyframes toggleVisibility {
+            0%, 100% {
+                opacity: 1; /* 开始和结束时可见 */
+            }
+
+            50% {
+                opacity: 0; /* 中间时不可见 */
+            }
+        }
+        
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>你喜欢我嘛</h1>
-    <button id="likeBtn">喜欢！</button>
-    <button id="dislikeBtn">不喜欢！</button>
-    <p id="message">我也喜欢你</p>
-
+    <div class="container">
+        <div class="title">Hi宝宝</div>
+        <div class="question">你喜欢我吗</div>
+        <div class="button-container">
+            <button class="button heart-green" onclick="showAlert()">❤️</button>
+            <button class="button heart-red" onclick="changeBackground()">❤️</button>
+        </div>
+    </div>
+    <p id="message">!!!我也喜欢你!!♡ (ू˃o˂ ू)⁼³₌₃</p>
     <script>
-        const likeBtn = document.getElementById('likeBtn');
-        const dislikeBtn = document.getElementById('dislikeBtn');
-        const message = document.getElementById('message');
-        const disScaleValues = [1, 0.8, 0.5, 0.3, 0.1, 0.0000000000000000000000000001];
-        const likeScaleValues = [1, 1.5, 2, 2.5, 3, 5, 10];
-        let likeScaleIndex = 0;
-        let disScaleIndex = 0;
-        likeBtn.addEventListener('click', function () {
+        function showAlert() {
+            alert("你一定是选错了吧，对不对(ಥ﹏ಥ)");
+        }
+
+        function changeBackground() {
+            document.body.style.backgroundColor = "rgb(252, 209, 229)";
+            document.body.style.backgroundImage = "url('changebackground.gif')"; // 更换背景图片
+            document.body.style.backgroundSize = "contain";
+            document.body.style.backgroundRepeat = "no-repeat";
             message.style.display = 'block';
-            likeBtn.style.transform = 'scale(1.5)';
-            dislikeBtn.style.transform = 'scale(0.5)';
-            setTimeout(() => {
-                likeBtn.parentElement.innerHTML = message.innerHTML;
-                document.body.style.backgroundImage = 'url(' + 'changebackground.gif' + ')';
-                document.body.style.backgroundSize = 'contain';
-                document.body.style.marginTop = '-300px';
-            }, 300);
-        });
-        dislikeBtn.addEventListener('touchstart', function () {
-            const x = Math.random() * (window.innerWidth - this.offsetWidth);
-            const y = Math.random() * (window.innerHeight - this.offsetHeight);
-            this.style.left = x + 'px';
-            this.style.top = y + 'px';
-        });
-        dislikeBtn.addEventListener('mouseenter', function () {
-            const x = Math.random() * (window.innerWidth - this.offsetWidth);
-            const y = Math.random() * (window.innerHeight - this.offsetHeight);
-            this.style.left = x + 'px';
-            this.style.top = y + 'px';
-        });
+            var content = document.querySelector('.container');
+            content.classList.toggle('hidden');
+            document.parentElement.innerHTML = message.innerHTML;
+        }
     </script>
 </body>
 </html>
